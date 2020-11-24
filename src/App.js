@@ -5,8 +5,10 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={tree} alt="Random Acts of Chrismas" />
-        <p>Random Acts Of Christmas. Coming Soon To A Block Near You</p>
+        <img src={tree} className="App-logo" alt="Random Acts Of Christmas" />
+        <p>
+          <p>Random Acts Of Christmas. Coming Soon To A Block Near Youu</p>
+        </p>
       </header>
     </div>
   );
