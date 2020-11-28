@@ -1,16 +1,18 @@
-import "./App.css";
-import tree from "./tree.jpg";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { ThemeProvider } from "@material-ui/core/styles";
+import Home from "./components/home";
+import christmasTheme from "./theme/christmas";
+import "../src/fonts/fonts.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={tree} className="App-logo" alt="Random Acts Of Christmas" />
-        <p>
-          <p>Random Acts Of Christmas. Coming Soon To A Block Near Youu</p>
-        </p>
-      </header>
-    </div>
+    <ThemeProvider theme={christmasTheme}>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Home} />
+        </Switch>
+      </Router>
+    </ThemeProvider>
   );
 }
 

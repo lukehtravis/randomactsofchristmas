@@ -1,0 +1,9 @@
+@font-face {
+  font-family: "Christmas";
+  src: url("./MountainsofChristmas-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Christmas Bold";
+  src: url("./MountainsofChristmas-Bold.ttf") format("truetype");
+}
