@@ -13,7 +13,6 @@ const useStyles = makeStyles((theme) => ({
   link: {
     marginLeft: "50px",
     textTransform: "uppercase",
-    color: "#fff",
     textDecoration: "none",
     fontFamily: "Christmas Bold",
     letterSpacing: "2px",
@@ -35,9 +34,14 @@ const Header = (props) => {
           <Link className={classes.link} to="/map">
             Map
           </Link>
-          <Link className={classes.link} to="/spreadsheet">
+          <a
+            className={classes.link}
+            target="_blank"
+            rel="noreferrer"
+            href="https://docs.google.com/spreadsheets/d/1skJYfeya6QrZUZcUF0Vm0AvuyVlDxyNNTnvtbcCBSSU/edit?usp=sharing"
+          >
             Add Cheer
-          </Link>
+          </a>
         </Toolbar>
       </AppBar>
     </div>
