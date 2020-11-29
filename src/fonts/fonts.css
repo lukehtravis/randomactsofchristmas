@@ -7,3 +7,8 @@
   font-family: "Christmas Bold";
   src: url("./MountainsofChristmas-Bold.ttf") format("truetype");
 }
+
+@font-face {
+  font-family: "Emilys Candy";
+  src: url("./EmilysCandy-Regular.ttf") format("truetype");
+}

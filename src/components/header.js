@@ -4,14 +4,16 @@ import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
-    justifyContent: "center",
+    justifyContent: "space-evenly",
+  },
+  nonTransparent: {
+    backgroundColor: "#BB2528",
   },
   transparent: {
-    backgroundColor: "transparent",
+    backgroundColor: "rgba(187, 37, 40, 0.6)",
     boxShadow: "none",
   },
   link: {
-    marginLeft: "50px",
     textTransform: "uppercase",
     textDecoration: "none",
     fontFamily: "Christmas Bold",
@@ -22,29 +24,32 @@ const useStyles = makeStyles((theme) => ({
 }));
 const Header = (props) => {
   const classes = useStyles();
-  const transparent = props.isTransparent ? classes.transparent : null;
+  const transparent = props.isTransparent
+    ? classes.transparent
+    : classes.nonTransparent;
 
   return (
-    <div>
-      <AppBar className={`${transparent}`}>
-        <Toolbar className={`${classes.appBar}`}>
-          <Link className={classes.link} to="/mission">
-            Mission
-          </Link>
-          <Link className={classes.link} to="/map">
-            Map
-          </Link>
-          <a
-            className={classes.link}
-            target="_blank"
-            rel="noreferrer"
-            href="https://docs.google.com/spreadsheets/d/1skJYfeya6QrZUZcUF0Vm0AvuyVlDxyNNTnvtbcCBSSU/edit?usp=sharing"
-          >
-            Add Cheer
-          </a>
-        </Toolbar>
-      </AppBar>
-    </div>
+    <AppBar className={`${transparent}`} position="relative">
+      <Toolbar className={`${classes.appBar}`}>
+        <Link className={classes.link} to="/">
+          Home
+        </Link>
+        <Link className={classes.link} to="/mission">
+          What Is This?
+        </Link>
+        <Link className={classes.link} to="/map">
+          Map
+        </Link>
+        <a
+          className={classes.link}
+          target="_blank"
+          rel="noreferrer"
+          href="https://docs.google.com/spreadsheets/d/1skJYfeya6QrZUZcUF0Vm0AvuyVlDxyNNTnvtbcCBSSU/edit?usp=sharing"
+        >
+          Add To Map
+        </a>
+      </Toolbar>
+    </AppBar>
   );
 };
 

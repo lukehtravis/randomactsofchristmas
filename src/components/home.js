@@ -1,11 +1,11 @@
 import "../App.css";
 import Header from "./header";
-import tree from "../tree.jpg";
+import treeCat from "../treeCat.jpg";
 import { makeStyles, Button } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   background: {
-    background: `url(${tree}) no-repeat center center fixed`,
+    background: `url(${treeCat}) no-repeat center center fixed`,
     backgroundSize: "cover",
     height: "100vh",
   },
@@ -16,14 +16,19 @@ const useStyles = makeStyles((theme) => ({
     left:
       "50%" /* position the left edge of the element at the middle of the parent */,
     transform: "translate(-50%, -50%)",
-    backgroundColor: "rgba(0,0,0, 0.8)",
+    backgroundColor: "rgba(0,0,0, 0.7)",
   },
+  introducer: {
+    fontSize: "22px",
+  },
+  title: {},
   overlayText: {
     fontSize: "20px",
     padding: "30px 50px",
     fontFamily: "Christmas",
     color: theme.palette.primary.lightRed,
     position: "relative",
+    textAlign: "center",
   },
   button: {
     backgroundColor: theme.palette.primary.lightGreen,
@@ -53,10 +58,13 @@ function Home() {
       <Header isTransparent={true} />
       <div className={classes.overlayBox}>
         <div className={classes.overlayText}>
-          <h1>Want To Spread Some Christmas Cheer?</h1>
-          <div className={classes.buttonContainer}>
-            <Button className={classes.button}>Check The Map</Button>
-          </div>
+          <p className={classes.introducer}>Welcome To</p>
+          <h1 className={classes.title}>
+            Random Acts Of Christmas
+            <br />
+            -
+            <br />A new Christmas tradition
+          </h1>
         </div>
       </div>
     </div>
