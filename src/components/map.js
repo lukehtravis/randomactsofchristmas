@@ -4,6 +4,7 @@ import Header from "./header";
 import { makeStyles } from "@material-ui/core";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
+import { latValidator, longValidator } from "../utils/coordValidator";
 
 const useStyles = makeStyles((theme) => ({
   mapContainer: {
@@ -36,14 +37,20 @@ function Map() {
           .then((response) => response.json())
           .then((data) => {
             data.forEach((row) => {
-              let marker = new mapboxgl.Marker()
-                .setLngLat([row.Longitude, row.Latitude])
-                .setPopup(
-                  new mapboxgl.Popup().setHTML(
-                    `<h3 class="popup-header">${row.Name}</h3><p class="popup-description">${row.Description}</p>`
-                  )
-                );
-              marker.addTo(mapbox);
+              if (latValidator(row.Latitude) && longValidator(row.Longitude)) {
+                let marker = new mapboxgl.Marker()
+                  .setLngLat([row.Longitude, row.Latitude])
+                  .setPopup(
+                    new mapboxgl.Popup().setHTML(
+                      `<h3 class="popup-header">${
+                        row.Name ? row.Name : ""
+                      }</h3><p class="popup-description">${
+                        row.Description ? row.Description : ""
+                      }</p>`
+                    )
+                  );
+                marker.addTo(mapbox);
+              }
             });
             setMap(mapbox);
             mapbox.resize();
