@@ -22,22 +22,39 @@ function Map() {
   useEffect(() => {
     mapboxgl.accessToken = REACT_APP_MAPBOX;
     const initializeMap = ({ setMap, mapContainer }) => {
-      const map = new mapboxgl.Map({
+      const mapbox = new mapboxgl.Map({
         container: mapContainer.current,
-        style: "mapbox://styles/mapbox/streets-v11", // stylesheet location
-        center: [0, 0],
-        zoom: 5,
+        style: "mapbox://styles/mapbox/streets-v11",
+        center: [-122.273225, 37.843999],
+        zoom: 10,
       });
 
-      map.on("load", () => {
-        setMap(map);
-        map.resize();
+      mapbox.on("load", () => {
+        fetch(
+          "https://sheet.best/api/sheets/ae0c093f-ffc7-4b6d-837e-16b6e5cdad77"
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            data.forEach((row) => {
+              let marker = new mapboxgl.Marker()
+                .setLngLat([row.Longitude, row.Latitude])
+                .setPopup(
+                  new mapboxgl.Popup().setHTML(
+                    `<h3 class="popup-header">${row.Name}</h3><p class="popup-description">${row.Description}</p>`
+                  )
+                );
+              marker.addTo(mapbox);
+            });
+            setMap(mapbox);
+            mapbox.resize();
+          });
+      });
+      mapbox.on("click", "marker", (e) => {
+        e.target.togglePopup();
       });
     };
-
     if (!map) initializeMap({ setMap, mapContainer });
   }, [map]);
-
   return (
     <div className={classes.background}>
       <Header isTransparent={false} />
