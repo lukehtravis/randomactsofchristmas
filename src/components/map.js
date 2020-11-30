@@ -4,12 +4,33 @@ import Header from "./header";
 import { makeStyles } from "@material-ui/core";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
+import treeIcon from "../treeIcon.png";
 import { latValidator, longValidator } from "../utils/coordValidator";
 
 const useStyles = makeStyles((theme) => ({
   mapContainer: {
     width: "100vw",
     height: "100vh",
+    "& .marker": {
+      backgroundImage: `url(${treeIcon})`,
+      backgroundSize: "cover",
+      width: "35px",
+      height: "35px",
+      cursor: "pointer",
+    },
+    "& .popup-header": {
+      color: theme.palette.primary.lightGreen,
+      fontFamily: "Emilys Candy",
+      letterSpacing: "1px",
+    },
+    "& .popup-description": {
+      color: theme.palette.primary.lightGreen,
+      fontFamily: "Emilys Candy",
+      letterSpacing: "1px",
+    },
+    "& .mapboxgl-ctrl-top-right": {
+      right: "40px",
+    },
   },
 }));
 
@@ -29,7 +50,8 @@ function Map() {
         center: [-122.273225, 37.843999],
         zoom: 10,
       });
-
+      // Add zoom and rotation controls to the map.
+      mapbox.addControl(new mapboxgl.NavigationControl());
       mapbox.on("load", () => {
         fetch(
           "https://sheet.best/api/sheets/ae0c093f-ffc7-4b6d-837e-16b6e5cdad77"
@@ -38,7 +60,9 @@ function Map() {
           .then((data) => {
             data.forEach((row) => {
               if (latValidator(row.Latitude) && longValidator(row.Longitude)) {
-                let marker = new mapboxgl.Marker()
+                var el = document.createElement("div");
+                el.className = "marker";
+                let marker = new mapboxgl.Marker(el)
                   .setLngLat([row.Longitude, row.Latitude])
                   .setPopup(
                     new mapboxgl.Popup().setHTML(

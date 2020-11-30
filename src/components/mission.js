@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.primary.lightRed,
   },
   imageContainer: {
-    height: "700px",
+    height: "600px",
     [theme.breakpoints.down("sm")]: {
       display: "none",
     },
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   image: {
     background: `url(${gnomes}) no-repeat center center fixed`,
     backgroundSize: "cover",
-    height: "700px",
+    height: "600px",
   },
   textContainer: {
     margin: "0 auto",
@@ -96,11 +96,8 @@ function Mission() {
                 (lol, seriously though)
               </li>
               <li>
-                Visit the
-                <Link className={classes.link} to="/map">
-                  Map Of Acts Of Christmas
-                </Link>
-                page to see your brilliance, and the brilliance of others
+                Visit the Map Of Acts Of Christmas page (in menu) to see your
+                brilliance, and the brilliance of others
               </li>
             </ol>
           </p>
@@ -127,7 +124,8 @@ function Mission() {
             brighter, bring us closer together, and light that holiday fire in
             our hearts.
           </p>
-          <p>Believe in the magic! BELIEVE IN IT!</p>
+          <p>Believe in the magic!</p>
+          <p>BELIEVE IN IT!</p>
         </div>
       </div>
     </div>
