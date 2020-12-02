@@ -20,6 +20,10 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: "2px",
     fontSize: "20px",
     color: theme.palette.primary.yellow,
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "14px",
+      textDecoration: "underline",
+    },
   },
 }));
 const Header = (props) => {

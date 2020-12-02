@@ -36,6 +36,9 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       padding: "20px",
     },
+    [theme.breakpoints.down("xs")]: {
+      padding: "0px",
+    },
   },
   link: {
     color: theme.palette.primary.lightRed,

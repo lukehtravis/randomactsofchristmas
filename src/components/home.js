@@ -1,6 +1,7 @@
 import "../App.css";
 import Header from "./header";
 import treeCat from "../treeCat.jpg";
+import treeCatMobile from "../treeCatMobile.jpg";
 import { makeStyles, Button } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -8,6 +9,9 @@ const useStyles = makeStyles((theme) => ({
     background: `url(${treeCat}) no-repeat center center fixed`,
     backgroundSize: "cover",
     height: "100vh",
+    [theme.breakpoints.down("xs")]: {
+      background: `url(${treeCatMobile}) no-repeat center center fixed`,
+    },
   },
   overlayBox: {
     position: "absolute",
@@ -17,11 +21,18 @@ const useStyles = makeStyles((theme) => ({
       "50%" /* position the left edge of the element at the middle of the parent */,
     transform: "translate(-50%, -50%)",
     backgroundColor: "rgba(0,0,0, 0.7)",
+    [theme.breakpoints.down("xs")]: {
+      width: "80%",
+    },
   },
   introducer: {
     fontSize: "22px",
   },
-  title: {},
+  title: {
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "26px",
+    },
+  },
   overlayText: {
     fontSize: "20px",
     padding: "30px 50px",
@@ -29,6 +40,9 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.primary.lightRed,
     position: "relative",
     textAlign: "center",
+    [theme.breakpoints.down("xs")]: {
+      padding: "15px 25px",
+    },
   },
   button: {
     backgroundColor: theme.palette.primary.lightGreen,
