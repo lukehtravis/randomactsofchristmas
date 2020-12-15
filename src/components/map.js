@@ -36,18 +36,24 @@ const useStyles = makeStyles((theme) => ({
 
 function Map() {
   const { REACT_APP_MAPBOX } = process.env;
-
+  let [mapOrigin, setMapOrigin] = useState([-122.273225, 37.843999]);
   const [map, setMap] = useState(null);
   const mapContainer = useRef(null);
   const classes = useStyles();
 
   useEffect(() => {
     mapboxgl.accessToken = REACT_APP_MAPBOX;
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        setMapOrigin([position.coords.longitude, position.coords.latitude]);
+      });
+    }
+    // Mapbox takes coordinates in as [longitude, latitude]
     const initializeMap = ({ setMap, mapContainer }) => {
       const mapbox = new mapboxgl.Map({
         container: mapContainer.current,
         style: "mapbox://styles/mapbox/streets-v11",
-        center: [-122.273225, 37.843999],
+        center: mapOrigin,
         zoom: 10,
       });
       // Add zoom and rotation controls to the map.
