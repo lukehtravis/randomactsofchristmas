@@ -4,7 +4,6 @@ export const latValidator = (someNumber) => {
 };
 
 export const longValidator = (someNumber) => {
-  const isLongitude = (num) =>
-    isFinite(someNumber) && Math.abs(someNumber) <= 180;
+  const isLongitude = isFinite(someNumber) && Math.abs(someNumber) <= 180;
   return isLongitude;
 };

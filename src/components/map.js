@@ -91,7 +91,7 @@ function Map() {
       });
     };
     if (!map) initializeMap({ setMap, mapContainer });
-  }, [map]);
+  }, [REACT_APP_MAPBOX, map, mapOrigin]);
   return (
     <div className={classes.background}>
       <Header isTransparent={false} />
