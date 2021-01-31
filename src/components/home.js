@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme) => ({
     height: "100vh",
     [theme.breakpoints.down("xs")]: {
       background: `url(${treeCatMobile}) no-repeat center center fixed`,
+      backgroundSize: "cover",
     },
   },
   overlayBox: {

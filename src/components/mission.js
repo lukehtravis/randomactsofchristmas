@@ -44,6 +44,11 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.primary.lightRed,
     padding: "0px 8px",
   },
+  bottomPadding: {
+    [theme.breakpoints.down("sm")]: {
+      paddingBottom: "20px",
+    },
+  },
 }));
 
 function Mission() {
@@ -128,7 +133,7 @@ function Mission() {
             our hearts.
           </p>
           <p>Believe in the magic!</p>
-          <p>BELIEVE IN IT!</p>
+          <p className={classes.bottomPadding}>BELIEVE IN IT!</p>
         </div>
       </div>
     </div>
