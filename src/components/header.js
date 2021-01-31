@@ -1,6 +1,7 @@
 import { AppBar, Toolbar } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core";
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -26,9 +27,9 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-const Header = (props) => {
+const Header = ({ isTransparent }) => {
   const classes = useStyles();
-  const transparent = props.isTransparent
+  const transparent = isTransparent
     ? classes.transparent
     : classes.nonTransparent;
 
@@ -55,6 +56,10 @@ const Header = (props) => {
       </Toolbar>
     </AppBar>
   );
+};
+
+Header.propTypes = {
+  isTransparent: PropTypes.bool,
 };
 
 export default Header;

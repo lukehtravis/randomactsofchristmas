@@ -6,6 +6,7 @@ import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import treeIcon from "../treeIcon.png";
 import { latValidator, longValidator } from "../utils/coordValidator";
+import { getMapData } from "../utils/getMapData";
 
 const useStyles = makeStyles((theme) => ({
   mapContainer: {
@@ -57,34 +58,10 @@ function Map() {
         zoom: 10,
       });
       // Add zoom and rotation controls to the map.
+
       mapbox.addControl(new mapboxgl.NavigationControl());
       mapbox.on("load", () => {
-        fetch(
-          "https://sheet.best/api/sheets/ae0c093f-ffc7-4b6d-837e-16b6e5cdad77"
-        )
-          .then((response) => response.json())
-          .then((data) => {
-            data.forEach((row) => {
-              if (latValidator(row.Latitude) && longValidator(row.Longitude)) {
-                var el = document.createElement("div");
-                el.className = "marker";
-                let marker = new mapboxgl.Marker(el)
-                  .setLngLat([row.Longitude, row.Latitude])
-                  .setPopup(
-                    new mapboxgl.Popup().setHTML(
-                      `<h3 class="popup-header">${
-                        row.Name ? row.Name : ""
-                      }</h3><p class="popup-description">${
-                        row.Description ? row.Description : ""
-                      }</p>`
-                    )
-                  );
-                marker.addTo(mapbox);
-              }
-            });
-            setMap(mapbox);
-            mapbox.resize();
-          });
+        getMapData(latValidator, longValidator, mapboxgl, mapbox, setMap);
       });
       mapbox.on("click", "marker", (e) => {
         e.target.togglePopup();
@@ -95,7 +72,11 @@ function Map() {
   return (
     <div className={classes.background}>
       <Header isTransparent={false} />
-      <div className={classes.mapContainer} ref={mapContainer}></div>
+      <div
+        data-testid="map"
+        className={classes.mapContainer}
+        ref={mapContainer}
+      ></div>
     </div>
   );
 }

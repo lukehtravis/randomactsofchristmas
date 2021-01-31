@@ -1,4 +1,10 @@
-const getMapData = () => {
+export const getMapData = (
+  latValidator,
+  longValidator,
+  mapboxgl,
+  mapbox,
+  setMap
+) => {
   try {
     fetch("https://sheet.best/api/sheets/ae0c093f-ffc7-4b6d-837e-16b6e5cdad77")
       .then((response) => response.json())
