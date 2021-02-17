@@ -6,9 +6,11 @@ import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import treeIcon from "../treeIcon.png";
 import { getMapData } from "../utils/getMapData";
+import FormContainer from "./formContainer";
 
 const useStyles = makeStyles((theme) => ({
   mapContainer: {
+    position: "fixed",
     width: "100vw",
     height: "100vh",
     "& .marker": {
@@ -76,6 +78,7 @@ function Map() {
         className={classes.mapContainer}
         ref={mapContainer}
       ></div>
+      <FormContainer />
     </div>
   );
 }
