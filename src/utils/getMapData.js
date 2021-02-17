@@ -1,32 +1,10 @@
-export const getMapData = (
-  latValidator,
-  longValidator,
-  mapboxgl,
-  mapbox,
-  setMap
-) => {
+import { placeMapMarkers } from "./placeMapMarkers";
+export const getMapData = (mapboxgl, mapbox, setMap) => {
   try {
-    fetch("https://sheet.best/api/sheets/ae0c093f-ffc7-4b6d-837e-16b6e5cdad77")
+    fetch("https://api-randomactsofchristmas.herokuapp.com/api/actsofchristmas")
       .then((response) => response.json())
       .then((data) => {
-        data.forEach((row) => {
-          if (latValidator(row.Latitude) && longValidator(row.Longitude)) {
-            var el = document.createElement("div");
-            el.className = "marker";
-            let marker = new mapboxgl.Marker(el)
-              .setLngLat([row.Longitude, row.Latitude])
-              .setPopup(
-                new mapboxgl.Popup().setHTML(
-                  `<h3 class="popup-header">${
-                    row.Name ? row.Name : ""
-                  }</h3><p class="popup-description">${
-                    row.Description ? row.Description : ""
-                  }</p>`
-                )
-              );
-            marker.addTo(mapbox);
-          }
-        });
+        placeMapMarkers(data, mapbox, mapboxgl);
         setMap(mapbox);
         mapbox.resize();
       });

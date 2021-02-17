@@ -5,7 +5,6 @@ import { makeStyles } from "@material-ui/core";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import treeIcon from "../treeIcon.png";
-import { latValidator, longValidator } from "../utils/coordValidator";
 import { getMapData } from "../utils/getMapData";
 
 const useStyles = makeStyles((theme) => ({
@@ -61,7 +60,7 @@ function Map() {
 
       mapbox.addControl(new mapboxgl.NavigationControl());
       mapbox.on("load", () => {
-        getMapData(latValidator, longValidator, mapboxgl, mapbox, setMap);
+        getMapData(mapboxgl, mapbox, setMap);
       });
       mapbox.on("click", "marker", (e) => {
         e.target.togglePopup();
