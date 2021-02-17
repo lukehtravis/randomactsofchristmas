@@ -98,6 +98,7 @@ function Mission() {
               <a
                 className={classes.link}
                 target="_blank"
+                data-cy="spreadsheet"
                 href="https://docs.google.com/spreadsheets/d/1skJYfeya6QrZUZcUF0Vm0AvuyVlDxyNNTnvtbcCBSSU/edit?usp=sharing"
               >
                 Acts Of Christmas Spreadsheet
