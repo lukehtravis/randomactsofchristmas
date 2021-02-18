@@ -7,54 +7,10 @@ import {
   FormHelperText,
 } from "@material-ui/core";
 import { validateForm } from "../utils/validateForm";
+import { styles } from "./mapForm.styles";
 
 const useStyles = makeStyles(() => ({
-  container: {
-    backgroundColor: "#fff",
-    marginBottom: "25px",
-    padding: "25px",
-  },
-  textField: {
-    marginBottom: "20px",
-  },
-  largeText: {
-    fontFamily: "Emilys Candy",
-    color: "#BB2528",
-    fontSize: "15px",
-  },
-  smallText: {
-    fontFamily: "Emilys Candy",
-    fontSize: "13px",
-    color: "#BB2528",
-  },
-  input: {
-    fontFamily: "Emilys Candy",
-
-    fontSize: "15px",
-    color: "#BB2528",
-    "& .MuiInput-underline:hover:not(.Mui-disabled):before": {
-      borderBottom: "0px",
-    },
-    "& textarea": {
-      border: "1px solid #165B33",
-      borderRadius: "3px",
-      padding: "10px",
-    },
-    "&::placeholder": {
-      fontFamily: "Emilys Candy",
-      fontSize: "15px",
-    },
-    "& .MuiInput-underline:before": {
-      border: "0px",
-    },
-  },
-
-  button: {
-    padding: "12px 40px",
-    border: "1px solid #D8D8D8",
-    marginTop: "20px",
-    borderRadius: "0px",
-  },
+  ...styles,
 }));
 
 const MapForm = ({ addActCoords }) => {
@@ -91,8 +47,6 @@ const MapForm = ({ addActCoords }) => {
       latitude: addActCoords.lat,
     };
 
-    console.log(JSON.stringify(actData));
-
     const { valid, errorMessages } = validateForm(actData);
 
     if (!valid) {
@@ -106,6 +60,9 @@ const MapForm = ({ addActCoords }) => {
           {
             body: JSON.stringify(actData),
             method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
           }
         ).then((response) => {
           setIsSubmitted(true);
@@ -114,11 +71,9 @@ const MapForm = ({ addActCoords }) => {
             name: "",
             description: "",
           });
-          console.log(response);
           alert("Congrats! Your Submission Was Succesful!");
         });
       } catch (e) {
-        console.log("server error", e);
         setErrors({
           ...errors,
           serverError:
@@ -127,6 +82,12 @@ const MapForm = ({ addActCoords }) => {
       }
     }
   };
+
+  if (isSubmitted) {
+    addActCoords.lat = "";
+    addActCoords.lng = "";
+    setIsSubmitted(false);
+  }
 
   return (
     <div className={classes.container}>
@@ -147,6 +108,7 @@ const MapForm = ({ addActCoords }) => {
             error={errors.hasOwnProperty("name")}
             className={classes.input}
             fullWidth
+            value={actOfChristmas.name}
             placeholder="Title of Act*"
             id="form-name"
             name="name"
@@ -170,6 +132,7 @@ const MapForm = ({ addActCoords }) => {
             inputProps={{ maxLength: 300 }}
             id="form-description"
             name="description"
+            value={actOfChristmas.description}
             placeholder="Description of Act*"
             InputProps={{ classes: { input: classes.input } }}
             onChange={handleInputInfo}
@@ -202,6 +165,11 @@ const MapForm = ({ addActCoords }) => {
         {errors.hasOwnProperty("coordinates") && (
           <FormHelperText htmlFor="render-input" error>
             <p>{errors.coordinates}</p>
+          </FormHelperText>
+        )}
+        {errors.hasOwnProperty("serverError") && (
+          <FormHelperText htmlFor="render-input" error>
+            <p>{errors.serverError}</p>
           </FormHelperText>
         )}
         <Button type="submit" className={classes.button}>

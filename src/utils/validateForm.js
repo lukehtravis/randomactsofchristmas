@@ -12,7 +12,6 @@ export const validateForm = (actOfChristmas) => {
       "Please give your Act Of Christmas A Description";
   }
 
-  console.log(actOfChristmas.longitude, actOfChristmas.latitude);
   if (
     longValidator(actOfChristmas.longitude) === false ||
     latValidator(actOfChristmas.latitude) === false
