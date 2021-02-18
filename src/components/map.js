@@ -8,40 +8,44 @@ import treeIcon from "../treeIcon.png";
 import { getMapData } from "../utils/getMapData";
 import FormContainer from "./formContainer";
 
-const useStyles = makeStyles((theme) => ({
-  mapContainer: {
-    position: "fixed",
-    width: "100vw",
-    height: "100vh",
-    "& .marker": {
-      backgroundImage: `url(${treeIcon})`,
-      backgroundSize: "cover",
-      width: "35px",
-      height: "35px",
-      cursor: "pointer",
-    },
-    "& .popup-header": {
-      color: theme.palette.primary.lightGreen,
-      fontFamily: "Emilys Candy",
-      letterSpacing: "1px",
-    },
-    "& .popup-description": {
-      color: theme.palette.primary.lightGreen,
-      fontFamily: "Emilys Candy",
-      letterSpacing: "1px",
-    },
-    "& .mapboxgl-ctrl-top-right": {
-      right: "40px",
-    },
-  },
-}));
+const useStyles = makeStyles((theme) => {
+  return {
+    mapContainer: (props) => ({
+      position: "fixed",
+      width: "100vw",
+      height: "100vh",
+      "& .marker": (props) => ({
+        backgroundImage: `url(${treeIcon})`,
+        backgroundSize: "cover",
+        width: "35px",
+        height: "35px",
+        cursor: "pointer",
+      }),
+      "& .popup-header": {
+        color: theme.palette.primary.lightGreen,
+        fontFamily: "Emilys Candy",
+        letterSpacing: "1px",
+      },
+      "& .popup-description": {
+        color: theme.palette.primary.lightGreen,
+        fontFamily: "Emilys Candy",
+        letterSpacing: "1px",
+      },
+      "& .mapboxgl-ctrl-top-right": {
+        right: "40px",
+      },
+    }),
+  };
+});
 
 function Map() {
   const { REACT_APP_MAPBOX } = process.env;
   let [mapOrigin, setMapOrigin] = useState([-122.273225, 37.843999]);
   const [map, setMap] = useState(null);
   const mapContainer = useRef(null);
-  const classes = useStyles();
+  let [formVisible, setFormVisible] = useState(false);
+  let [addActCoords, setAddActCoords] = useState({});
+  const classes = useStyles({ formVisible });
 
   useEffect(() => {
     mapboxgl.accessToken = REACT_APP_MAPBOX;
@@ -70,6 +74,15 @@ function Map() {
     };
     if (!map) initializeMap({ setMap, mapContainer });
   }, [REACT_APP_MAPBOX, map, mapOrigin]);
+
+  if (map) {
+    map.on("click", (event) => {
+      if (formVisible) {
+        setAddActCoords(event.lngLat);
+      }
+    });
+  }
+
   return (
     <div className={classes.background}>
       <Header isTransparent={false} />
@@ -78,7 +91,11 @@ function Map() {
         className={classes.mapContainer}
         ref={mapContainer}
       ></div>
-      <FormContainer />
+      <FormContainer
+        formVisible={formVisible}
+        setFormVisible={setFormVisible}
+        addActCoords={addActCoords}
+      />
     </div>
   );
 }

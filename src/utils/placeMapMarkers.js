@@ -2,6 +2,7 @@ import { latValidator, longValidator } from "./coordValidator";
 export const placeMapMarkers = (data, mapbox, mapboxgl) => {
   data.forEach((row) => {
     if (latValidator(row.latitude) && longValidator(row.longitude)) {
+      console.log("I'm here!");
       var el = document.createElement("div");
       el.className = "marker";
       let marker = new mapboxgl.Marker(el)
