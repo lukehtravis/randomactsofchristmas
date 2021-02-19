@@ -1,19 +1,10 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
-import {
-  makeStyles,
-  TextField,
-  Button,
-  FormHelperText,
-} from "@material-ui/core";
+import { TextField, Button, FormHelperText } from "@material-ui/core";
 import { validateForm } from "../utils/validateForm";
-import { styles } from "./mapForm.styles";
+import { useStyles } from "./mapForm.styles";
 import { MapContext } from "./mapContext";
 import { getMapData } from "../utils/getMapData";
-
-const useStyles = makeStyles(() => ({
-  ...styles,
-}));
 
 const MapForm = ({ addActCoords }) => {
   const classes = useStyles();

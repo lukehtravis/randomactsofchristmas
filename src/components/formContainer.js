@@ -4,12 +4,15 @@ import { makeStyles } from "@material-ui/core";
 import MapButton from "./mapButton";
 import MapForm from "./mapForm";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   container: {
     position: "fixed",
     bottom: "20px",
     right: "20px",
     width: "400px",
+    [theme.breakpoints.down("sm")]: {
+      width: "250px",
+    },
   },
 }));
 
