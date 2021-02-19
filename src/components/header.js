@@ -45,14 +45,6 @@ const Header = ({ isTransparent }) => {
         <Link className={classes.link} to="/map">
           Map
         </Link>
-        <a
-          className={classes.link}
-          target="_blank"
-          rel="noreferrer"
-          href="https://docs.google.com/spreadsheets/d/1skJYfeya6QrZUZcUF0Vm0AvuyVlDxyNNTnvtbcCBSSU/edit?usp=sharing"
-        >
-          Add To Map
-        </a>
       </Toolbar>
     </AppBar>
   );
