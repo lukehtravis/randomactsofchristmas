@@ -1,4 +1,4 @@
-import { latValidator, longValidator } from "./coordValidator";
+import { latValidator, longValidator } from "../utils/coordValidator";
 
 describe("Longitude validator returns proper values", () => {
   test("returns true if input is between -180 and 180 (inclusive)", () => {

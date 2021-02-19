@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, createContext } from "react";
 import "../App.css";
 import Header from "./header";
 import { makeStyles } from "@material-ui/core";
@@ -7,6 +7,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import treeIcon from "../treeIcon.png";
 import { getMapData } from "../utils/getMapData";
 import FormContainer from "./formContainer";
+import { MapContext } from "./mapContext";
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -91,11 +92,20 @@ function Map() {
         className={classes.mapContainer}
         ref={mapContainer}
       ></div>
-      <FormContainer
-        formVisible={formVisible}
-        setFormVisible={setFormVisible}
-        addActCoords={addActCoords}
-      />
+      <MapContext.Provider
+        value={{
+          getMapData: getMapData,
+          mapboxgl: mapboxgl,
+          map: map,
+          setMap: setMap,
+        }}
+      >
+        <FormContainer
+          formVisible={formVisible}
+          setFormVisible={setFormVisible}
+          addActCoords={addActCoords}
+        />
+      </MapContext.Provider>
     </div>
   );
 }

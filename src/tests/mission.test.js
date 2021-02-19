@@ -1,4 +1,4 @@
-import Mission from "./mission";
+import Mission from "../components/mission";
 import { render, screen } from "@testing-library/react";
 import { Router } from "react-router-dom";
 import { createMemoryHistory } from "history";

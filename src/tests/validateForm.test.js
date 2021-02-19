@@ -1,4 +1,4 @@
-import { validateForm } from "./validateForm";
+import { validateForm } from "../utils/validateForm";
 
 describe("testing the validateForm function", () => {
   test("the validateForm function works as expected with proper inputs", () => {
