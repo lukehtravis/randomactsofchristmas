@@ -1,4 +1,4 @@
-import Map from "./map";
+import Map from "../components/map";
 import { screen, render, wait } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Router } from "react-router-dom";

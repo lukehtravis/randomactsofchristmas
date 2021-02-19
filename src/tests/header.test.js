@@ -1,4 +1,4 @@
-import Header from "./header";
+import Header from "../components/header";
 import { screen, render } from "@testing-library/react";
 import { Router } from "react-router-dom";
 import { createMemoryHistory } from "history";

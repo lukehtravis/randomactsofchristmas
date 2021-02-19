@@ -86,27 +86,20 @@ function Mission() {
           </p>
           <ol>
             <li>
-              Go to google maps, and drop a pin on the exact place where your
-              Random Act Of Christmas took place
-            </li>
-            <li>
-              Get the coordinates of the pin (first coordinate is latitude,
-              second is longitude (ex, 37.866197, -122.284623)
-            </li>
-            <li>
-              Add the lat and long to our
-              <a
-                className={classes.link}
-                target="_blank"
-                href="https://docs.google.com/spreadsheets/d/1skJYfeya6QrZUZcUF0Vm0AvuyVlDxyNNTnvtbcCBSSU/edit?usp=sharing"
-              >
-                Acts Of Christmas Spreadsheet
+              Visit the{" "}
+              <a className={classes.link} href="/map">
+                Map Of Acts Of Christmas page
               </a>
-              (lol, seriously though)
+            </li>
+            <li>Click on the plus button in bottom right</li>
+            <li>
+              Find wherever you are on the world and tap the screen on that
+              point of the map (you can pinch for zooming in and out, or use the
+              togglers on top right of screen)
             </li>
             <li>
-              Visit the Map Of Acts Of Christmas page (in menu) to see your
-              brilliance, and the brilliance of others
+              Hit Submit and your act will be uploaded, and the map will
+              auto-reload!
             </li>
           </ol>
 
