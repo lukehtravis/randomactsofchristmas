@@ -10,17 +10,25 @@ export const useStyles = makeStyles((theme) => ({
       left: "0px",
       bottom: "0px",
       width: "40%",
+      marginBottom: "10px",
+      padding: "10px",
+      "& p": {
+        margin: "5px 0",
+      },
     },
   },
   textField: {
     marginBottom: "20px",
+    [theme.breakpoints.down("sm")]: {
+      marginBottom: "7px",
+    },
   },
   largeText: {
     fontFamily: "Emilys Candy",
     color: "#BB2528",
     fontSize: "15px",
     [theme.breakpoints.down("sm")]: {
-      fontSize: "13px",
+      fontSize: "11px",
     },
   },
   smallText: {
@@ -28,7 +36,7 @@ export const useStyles = makeStyles((theme) => ({
     fontSize: "13px",
     color: "#BB2528",
     [theme.breakpoints.down("sm")]: {
-      fontSize: "11px",
+      fontSize: "10px",
     },
   },
   input: {
@@ -36,7 +44,7 @@ export const useStyles = makeStyles((theme) => ({
     fontSize: "15px",
     color: "#BB2528",
     [theme.breakpoints.down("sm")]: {
-      fontSize: "13px",
+      fontSize: "11px",
     },
     "& .MuiInput-underline:hover:not(.Mui-disabled):before": {
       borderBottom: "0px",
@@ -50,7 +58,7 @@ export const useStyles = makeStyles((theme) => ({
       fontFamily: "Emilys Candy",
       fontSize: "15px",
       [theme.breakpoints.down("sm")]: {
-        fontSize: "13px",
+        fontSize: "11px",
       },
     },
     "& .MuiInput-underline:before": {
@@ -63,7 +71,7 @@ export const useStyles = makeStyles((theme) => ({
     marginTop: "20px",
     borderRadius: "0px",
     [theme.breakpoints.down("sm")]: {
-      fontSize: "13px",
+      fontSize: "11px",
     },
   },
 }));
