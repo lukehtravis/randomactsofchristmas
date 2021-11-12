@@ -8,10 +8,12 @@ export const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       position: "fixed",
       left: "0px",
-      bottom: "0px",
+      top: "56px",
       width: "40%",
       marginBottom: "10px",
       padding: "10px",
+      overflowY: "scroll",
+      maxHeight: "calc(100vh - 56px)",
       "& p": {
         margin: "5px 0",
       },
